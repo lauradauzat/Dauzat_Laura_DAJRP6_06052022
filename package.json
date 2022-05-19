@@ -1,0 +1,25 @@
+{
+  "name": "dauzat_laura_dajrp6_06052022",
+  "version": "1.0.0",
+  "description": "## Démarrer le projet",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass -w scss/ -o css/ --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lauradauzat/Dauzat_Laura_DAJRP6_06052022.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lauradauzat/Dauzat_Laura_DAJRP6_06052022/issues"
+  },
+  "homepage": "https://github.com/lauradauzat/Dauzat_Laura_DAJRP6_06052022#readme",
+  "devDependencies": {
+    "eslint": "^8.15.0"
+  },
+  "dependencies": {
+    "node-sass": "^7.0.1"
+  }
+}
