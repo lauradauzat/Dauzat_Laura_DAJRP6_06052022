@@ -34,3 +34,12 @@
     
     init();
     
+    function OpenPhotographerPage(id) {
+      var url = `/photographer.html?id=${id}`;
+      window.open(url);
+      
+    }
+
+    function toFrontPage() {
+      window.open('/'); 
+    }

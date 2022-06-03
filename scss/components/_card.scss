@@ -1,0 +1,34 @@
+article img {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/*IMG GALLERY CARD*/
+
+
+
+.img-container {
+    height: 600px;
+    width: 500px;
+}
+
+.img-box {
+    height: 500px;
+    width: 500px;
+
+
+    img {
+        object-fit: cover;
+        height: 500px;
+        width: 500px;
+        border-radius: 10px;
+    }
+}
+
+.txt-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $primary;
+    font-size: xx-large;
+}
