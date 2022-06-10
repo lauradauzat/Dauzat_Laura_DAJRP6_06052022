@@ -1,6 +1,10 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
 let data; 
+let photographer; 
+let media; 
+
+
 
 
 function getIdFromParams() {
@@ -15,12 +19,12 @@ async function getPhotographerData(searchedId) {
    
   try {
     const response = await fetch("./data/photographers.json");
-    const data = await response.json();
+    data = await response.json();
   
-          const photographer = data.photographers.find((photographer) => {
+          photographer = data.photographers.find((photographer) => {
               return photographer.id == searchedId;
           });
-          const media = data.media.filter((item) => {
+          media = data.media.filter((item) => {
             return item.photographerId == searchedId;
           });
   
@@ -35,24 +39,7 @@ async function getPhotographerData(searchedId) {
 id = getIdFromParams(); 
 console.log('id : '+id);
 
-// function printImg(imgs) {
-//   const cardsContainer = document.getElementById('cards-container'); 
-//   console.log('------'+imgs)
-//   imgs.forEach(img => {
-//     console.log(title);
-//     const cardImg = document.createElement( 'div' );
-//     cardImg.setAttribute('class',`img-container`);
-//     cardImg.setAttribute('id',`img-(${id})`);
-//     cardImg.innerHTML = `
-//     <div >       
-//         <img src="${picture}" alt="${title}" id="${id}">
-//     </div>
-//     `; 
-//     cardsContainer.appendChild(cardImg); 
 
-//   });
-  
-// }
 
 async function displayHeader(photographer) {
     const photographersHeader = document.querySelector(".photograph-header");
@@ -64,12 +51,19 @@ async function displayHeader(photographer) {
 
 
 async function displayPhotos(media) {
-  //const cardsContainer = document.getElementById('cards-container'); 
-  const imgsCardsModel = mediaFactory(media); 
+  const cardsContainer = document.getElementById('cards-container'); 
+  
+  media.forEach(image => {
+    const mediaModel =  mediaFactory(image);
+    const mediaCardDOM = mediaModel.getMediaCardDOM();
+    cardsContainer.appendChild(mediaCardDOM)
+
+  });  
   //const imgDOM = imgsCardsModel.getImgs();
   //cardsContainer.appendChild(imgDOM); 
 
 }
+
 
 
 
@@ -83,3 +77,46 @@ async function init() {
 };
 
 init();
+
+const select = document.getElementById('order-select');
+
+select.addEventListener("change", function() {
+  console.log(select.value);
+  if (select.value === "date") {
+      media.sort(function(a, b) {
+      var c = new Date(a.date);
+      var d = new Date(b.date);
+      return d-c;
+   
+  
+   });
+  console.log(media)
+
+  }
+
+  if (select.value === "popularité")  {
+    media.sort(function(a, b) {
+      return a.likes - b.likes;
+    });
+    media.reverse();
+
+  }
+
+  if (select.value === "titre") {
+    media.sort((a, b) => {
+      let ma = a.title.toLowerCase(),
+          mb = b.title.toLowerCase();
+  
+      if (ma < mb) {
+          return -1;
+      }
+      if (ma > mb) {
+          return 1;
+      }
+      return 0;
+  });
+  }
+  const cardsContainer = document.getElementById('cards-container'); 
+  cardsContainer.innerHTML = ''; 
+  displayPhotos(data.media);
+});

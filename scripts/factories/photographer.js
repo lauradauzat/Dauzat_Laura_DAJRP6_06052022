@@ -43,35 +43,35 @@ function photographerFactory(data) {
     return { name, picture, getUserCardDOM, getHeaderForPhotographerPage }
 }
 
-function mediaFactory(data) {
-    // console.log('iugiuiugig'+JSON.stringify(data))
-    const {id, photographerId, title, image, likes, date, price } = data;
-    const cardsContainer = document.getElementById('cards-container');
-    data.forEach(image => {
-        console.log('lop'+image.title); 
-        const pic = `assets/photos/${image.image}`;
+// function mediaFactory(data) {
+//     // console.log('iugiuiugig'+JSON.stringify(data))
+//     const {id, photographerId, title, image, likes, date, price } = data;
+//     const cardsContainer = document.getElementById('cards-container');
+//     data.forEach(image => {
+//         console.log('lop'+image.title); 
+//         const pic = `assets/photos/${image.image}`;
 
-        //function getImgs() {
-            const cardImg = document.createElement( 'div' );
-                cardImg.setAttribute('class',`img-container`);
-                cardImg.setAttribute('id',`img-${image.id})`);
-                cardImg.innerHTML = `
-                <div class="img-box">       
-                    <img src="${pic}" alt="${image.title}" id="${image.id}">
-                </div>
-                <div class="txt-box">
-                    <p> ${image.title} </p>
-                    <div class="likes-wrap">
-                    ${image.likes}
-                    <i class="fa fa-solid fa-heart"></i>
-                    </div>
-                </div>    
+//         //function getImgs() {
+//             const cardImg = document.createElement( 'div' );
+//                 cardImg.setAttribute('class',`img-container`);
+//                 cardImg.setAttribute('id',`img-${image.id})`);
+//                 cardImg.innerHTML = `
+//                 <div class="img-box">       
+//                     <img src="${pic}" alt="${image.title}" id="${image.id}">
+//                 </div>
+//                 <div class="txt-box">
+//                     <p> ${image.title} </p>
+//                     <div class="likes-wrap">
+//                     ${image.likes}
+//                     <i class="fa fa-solid fa-heart"></i>
+//                     </div>
+//                 </div>    
 
-                `; 
-            cardsContainer.appendChild(cardImg);    
-                //return (cardImg);
-        //}
-        //return {id, title, image, pic, getImgs}
-    });
+//                 `; 
+//             cardsContainer.appendChild(cardImg);    
+//                 //return (cardImg);
+//         //}
+//         //return {id, title, image, pic, getImgs}
+//     });
 
-}
+// }

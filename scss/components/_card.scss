@@ -17,12 +17,14 @@ article img {
     width: 500px;
 
 
-    img {
+    img, video {
         object-fit: cover;
         height: 500px;
         width: 500px;
         border-radius: 10px;
     }
+
+
 }
 
 .txt-box {
