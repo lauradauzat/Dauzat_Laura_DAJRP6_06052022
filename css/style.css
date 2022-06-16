@@ -64,6 +64,9 @@ article img {
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   /* The Close Button */
 }
+#lightbox .content-wrap {
+  display: flex;
+}
 #lightbox .modal-content {
   background-color: #ffffff;
   margin: 15% auto; /* 15% from the top and centered */
@@ -155,7 +158,6 @@ article img {
 .modal header {
   justify-content: space-between;
   width: 100%;
-  height: unset;
 }
 
 .modal header img {
@@ -165,7 +167,7 @@ article img {
 .modal header h2 {
   font-size: 64px;
   font-weight: normal;
-
+  text-align: center;
 }
 
 form {

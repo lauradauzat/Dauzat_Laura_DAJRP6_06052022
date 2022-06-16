@@ -122,7 +122,7 @@ select.addEventListener("change", function() {
 
 const lightbox = document.getElementById('lightbox'); 
 const lbContent = document.getElementById('modalContent');
-
+const modalContent = document.getElementById('modalContent'); 
 
 function openLB(cardId) {
   lbContent.innerHTML =  ` <span class="close" onclick="closeLightbox()">&times;</span>`;
@@ -130,10 +130,15 @@ function openLB(cardId) {
   const selectedImg = media.filter((item) => {
     return item.id == cardId;
   });
-  console.log('select' + JSON.stringify(selectedImg));
-  const mediaModel =  mediaFactory(selectedImg);
+//   console.log('select' + JSON.stringify(selectedImg));
+//  console.log('oiuoiuoiu'+selectedImg[0].title);
+//  console.log(Object.values(selectedImg));
+
+
+  const mediaModel =  mediaFactory(selectedImg[0]);
   const selectedCardDOM = mediaModel.getLightboxCardDOM();
   lbContent.appendChild(selectedCardDOM)
+  
 
 
 }

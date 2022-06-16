@@ -1,6 +1,6 @@
 function mediaFactory(mediadata) {
  console.log('donnée reçu en para par la media factory ej stringify'+ JSON.stringify(mediadata));
-    console.log('mediadata title' + mediadata.title);
+
     const {id, photographerId, title, image, video, likes, date, price } = mediadata;
     const cardsContainer = document.getElementById('cards-container');
     const modalContent = document.getElementById('modalContent'); 
@@ -61,6 +61,7 @@ function mediaFactory(mediadata) {
             const cardImg = document.createElement( 'div' );
             cardImg.setAttribute('class',`img-container`);
             cardImg.setAttribute('id',`${id}`);
+            
             if (mediadata.hasOwnProperty('image')) {
                 cardImg.innerHTML = `
                 <div class="img-box" onclick="openLB(${id})">       
@@ -85,10 +86,6 @@ function mediaFactory(mediadata) {
             `
                 <div class="txt-box">
                 <p> ${title} </p>
-                <div class="likes-wrap">
-                ${likes}
-                <i class="fa fa-solid fa-heart"></i>
-                </div>
                 </div>    
             `;
             
