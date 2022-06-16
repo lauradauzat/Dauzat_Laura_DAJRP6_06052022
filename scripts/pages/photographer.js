@@ -54,6 +54,7 @@ async function displayPhotos(media) {
   const cardsContainer = document.getElementById('cards-container'); 
   
   media.forEach(image => {
+    console.log('foreach' + JSON.stringify(image));
     const mediaModel =  mediaFactory(image);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     cardsContainer.appendChild(mediaCardDOM)
@@ -63,8 +64,6 @@ async function displayPhotos(media) {
   //cardsContainer.appendChild(imgDOM); 
 
 }
-
-
 
 
 async function init() {
@@ -120,3 +119,40 @@ select.addEventListener("change", function() {
   cardsContainer.innerHTML = ''; 
   displayPhotos(data.media);
 });
+
+const lightbox = document.getElementById('lightbox'); 
+const lbContent = document.getElementById('modalContent');
+
+
+function openLB(cardId) {
+  lbContent.innerHTML =  ` <span class="close" onclick="closeLightbox()">&times;</span>`;
+  lightbox.style.display = "block";
+  const selectedImg = media.filter((item) => {
+    return item.id == cardId;
+  });
+  console.log('select' + JSON.stringify(selectedImg));
+  const mediaModel =  mediaFactory(selectedImg);
+  const selectedCardDOM = mediaModel.getLightboxCardDOM();
+  lbContent.appendChild(selectedCardDOM)
+
+
+}
+
+function closeLightbox() {
+  lightbox.style.display = "none"; 
+}
+
+const titleName = document.getElementById('contact-name'); 
+
+
+function displayModal() {
+  const modal = document.getElementById("contact_modal");
+  modal.style.display = "flex";
+  titleName.innerHTML += `${photographer.name}`
+}
+
+function closeModal() {
+  const modal = document.getElementById("contact_modal");
+  modal.style.display = "none";
+}
+

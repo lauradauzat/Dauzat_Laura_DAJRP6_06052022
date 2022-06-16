@@ -41,18 +41,35 @@
       </div>
    
     </main>
+    <div id="lightbox" >
+
+      <!-- Modal content -->
+      <div class="modal-content" id="modalContent">
+      
+
+      </div>
+    
+    </div>
+
     <div id="contact_modal">
 			<div class="modal">
 				<header>
-          <h2>Contactez-moi</h2>
+          <h2 id="contact-name">Contactez-moi <br>  </h2>
+         
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="prénom">Prénom</label>
+						<input type="text"/>
+            <label for="Nom">Nom </label>
+            <input type="text">
+            <label for="Email">Email</label>
+            <input type="email" name="Email" id="email">
+            <label for="Message">Votre message</label>
+            <input type="text" name="Message" id="message">
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="contact_button" type="submit">Envoyer</button>
 				</form>
 			</div>
 		</div>
