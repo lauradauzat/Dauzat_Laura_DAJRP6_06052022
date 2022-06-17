@@ -40,6 +40,3 @@
       
     }
 
-    function toFrontPage() {
-      window.open('/'); 
-    }

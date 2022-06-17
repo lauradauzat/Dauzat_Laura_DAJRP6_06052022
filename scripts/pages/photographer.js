@@ -1,3 +1,5 @@
+
+
 //Mettre le code JavaScript lié à la page photographer.html
 
 let data; 
@@ -120,15 +122,21 @@ select.addEventListener("change", function() {
   displayPhotos(data.media);
 });
 
+//gestion de la lightbox 
+
 const lightbox = document.getElementById('lightbox'); 
 const lbContent = document.getElementById('modalContent');
 const modalContent = document.getElementById('modalContent'); 
+const insideModal = document.getElementById('insideModal');
+let currentImgId = 0;
 
 function openLB(cardId) {
-  lbContent.innerHTML =  ` <span class="close" onclick="closeLightbox()">&times;</span>`;
+  currentImgId = cardId; 
+  insideModal.innerHTML =  ` <span class="close" onclick="closeLightbox()">&times;</span>`;
   lightbox.style.display = "block";
   const selectedImg = media.filter((item) => {
     return item.id == cardId;
+
   });
 //   console.log('select' + JSON.stringify(selectedImg));
 //  console.log('oiuoiuoiu'+selectedImg[0].title);
@@ -137,9 +145,8 @@ function openLB(cardId) {
 
   const mediaModel =  mediaFactory(selectedImg[0]);
   const selectedCardDOM = mediaModel.getLightboxCardDOM();
-  lbContent.appendChild(selectedCardDOM)
+  insideModal.appendChild(selectedCardDOM)
   
-
 
 }
 
@@ -147,17 +154,87 @@ function closeLightbox() {
   lightbox.style.display = "none"; 
 }
 
-const titleName = document.getElementById('contact-name'); 
 
 
-function displayModal() {
-  const modal = document.getElementById("contact_modal");
-  modal.style.display = "flex";
-  titleName.innerHTML += `${photographer.name}`
+
+
+leftBtn = document.getElementById('left'); 
+rightBtn = document.getElementById('right'); 
+
+
+
+function goLeft() {
+  //console.log();('left' + currentImgId );
+  const currentIndex = media.map(object => object.id).indexOf(currentImgId);
+  let previousIndex = ''; 
+    //repartir au dernier élément si first el
+    if (currentIndex === 0) {
+      previousIndex = media.length - 1;
+    } 
+    //boucle left classique 
+    else {
+      previousIndex = (currentIndex - 1) % media.length;
+    }
+     media[previousIndex];
+    //console.log(media[previousIndex].title);
+    insideModal.innerHTML =  ` <span class="close" onclick="closeLightbox()">&times;</span>`;
+    const mediaModel =  mediaFactory(media[previousIndex]);
+    const selectedCardDOM = mediaModel.getLightboxCardDOM();
+    insideModal.appendChild(selectedCardDOM); 
+    currentImgId = media[previousIndex].id;
+    console.log(currentIndex);
+    console.log(media.length);
+
 }
 
-function closeModal() {
-  const modal = document.getElementById("contact_modal");
-  modal.style.display = "none";
+function goRight() {
+    console.log('right' + currentImgId ); 
+    const currentIndex = media.map(object => object.id).indexOf(currentImgId);
+    const nextIndex = (currentIndex + 1) % media.length;
+     media[nextIndex];
+    console.log(media[nextIndex].title);
+    insideModal.innerHTML =  ` <span class="close" onclick="closeLightbox()">&times;</span>`;
+    const mediaModel =  mediaFactory(media[nextIndex]);
+    const selectedCardDOM = mediaModel.getLightboxCardDOM();
+    insideModal.appendChild(selectedCardDOM)
+    currentImgId = media[nextIndex].id;
+    console.log(nextIndex);
+    console.log(media.length);
+
 }
 
+
+function clearBox(elementID)
+{
+    document.getElementById(elementID).innerHTML = "";
+}
+
+
+//handle likes
+
+//voir avec Steeve addEventListener ne marche pas 
+
+let liked = false; 
+function addLike(likes, id) {
+  console.log('coucou' + likes);
+  liked = true ;
+  let currentImg = media.filter((item) => {
+    return item.id == id;
+  });
+  currentImg.likes = likes + 1
+  console.log(currentImg.likes);
+  const mediaModel =  mediaFactory(currentImg[0]);
+  mediaModel.refreshLikes();
+  
+}
+
+//const likeButtons = document.querySelectorAll(".likes-wrap")
+// for (const button of likeButtons) {
+//   button.addEventListener('click', function(event) {
+//     console.log('coucou' + button.value );
+//   })
+// }
+
+function toFrontPage() {
+  window.open('/'); 
+}

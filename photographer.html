@@ -47,9 +47,11 @@
     
         
         <div class="modal-content" id="modalContent">
-      
-      
-
+          <button id="left" onclick="goLeft()"><i class=" fa fa-solid fa-angle-left"></i></button>
+          <div class="inside-modal" id="insideModal">
+         
+          </div>
+          <button id="right"  onclick="goRight()"> <i class=" fa fa-solid fa-angle-right"></i></button>
         </div>
   
       
@@ -64,25 +66,27 @@
          
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
-				<form>
+				<form id="form">
 					<div>
 						<label for="prénom">Prénom</label>
-						<input type="text"/>
+						<input class="form-input" name="prenom" type="text"/>
             <label for="Nom">Nom </label>
-            <input type="text">
+            <input class="form-input"  name="nom" type="text">
             <label for="Email">Email</label>
-            <input type="email" name="Email" id="email">
+            <input class="form-input"  name="email" type="email" name="Email" id="email">
             <label for="Message">Votre message</label>
-            <input type="text" name="Message" id="message">
+            <input class="form-input" type="text" name="message" id="message">
 					</div>
           <button class="contact_button" type="submit">Envoyer</button>
 				</form>
 			</div>
 		</div>
-    <script src="/scripts/utils/contactForm.js"></script>
-    <script src="/scripts/pages/index.js"></script>
+ 
+    <!-- <script src="/scripts/pages/index.js"></script> -->
     <script src="/scripts/factories/Photographer.js"></script>
     <script src="/scripts/factories/media.js"></script>
-    <script src="scripts/pages/photographer.js"></script>
+    <script src="/scripts/pages/photographer.js"></script>
+    <script  src="/scripts/utils/lightbox.js"></script>
+    <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>

@@ -64,6 +64,10 @@ article img {
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
   /* The Close Button */
 }
+#lightbox button {
+  background-color: unset;
+  border: none;
+}
 #lightbox .content-wrap {
   display: flex;
 }
@@ -73,6 +77,13 @@ article img {
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+#lightbox .modal-content i {
+  font-size: 90px;
+  color: #901C1C;
 }
 #lightbox .close {
   color: #aaa;

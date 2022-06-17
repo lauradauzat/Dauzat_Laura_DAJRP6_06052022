@@ -11,6 +11,11 @@
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 
+    button {
+       background-color: unset;
+       border: none; 
+    }
+
     .content-wrap {
        display: flex;
     }
@@ -20,6 +25,15 @@
         padding: 20px;
         border: 1px solid #888;
         width: 80%; /* Could be more or less, depending on screen size */
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        i {
+              font-size: 90px;
+              color: $primary; 
+        }
+
       }
 
             /* The Close Button */

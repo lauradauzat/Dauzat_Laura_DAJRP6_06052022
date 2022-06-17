@@ -4,6 +4,8 @@ function mediaFactory(mediadata) {
     const {id, photographerId, title, image, video, likes, date, price } = mediadata;
     const cardsContainer = document.getElementById('cards-container');
     const modalContent = document.getElementById('modalContent'); 
+    const likeContainer = document.getElementById(`like${id}`);
+    
     // mediadata.forEach(image => {
         console.log('id'+ id); 
         let pic ='';
@@ -43,17 +45,26 @@ function mediaFactory(mediadata) {
                 }
                 cardImg.innerHTML += 
                 `
-                    <div class="txt-box">
+                    <div  class="txt-box">
                     <p> ${title} </p>
-                    <div class="likes-wrap">
+                    <div id="like${id}" onclick="addLike(${likes}, ${id})" class="likes-wrap">
                     ${likes}
-                    <i class="fa fa-solid fa-heart"></i>
+                    <i  class="fa fa-solid fa-heart"></i>
                     </div>
                     </div>    
                 `;
                 
             cardsContainer.appendChild(cardImg);    
             return (cardImg);
+        }
+
+        function refreshLikes(){
+            let newLikes = likes + 1 
+            likeContainer.innerHTML = ''; 
+            likeContainer.innerHTML = `
+            ${newLikes}
+            <i  class="fa fa-solid fa-heart"></i>
+            `; 
         }
 
         function getLightboxCardDOM() {
@@ -94,7 +105,7 @@ function mediaFactory(mediadata) {
         }
 
 
-        return { getMediaCardDOM , getLightboxCardDOM}
+        return { getMediaCardDOM , getLightboxCardDOM, refreshLikes}
     // });
 
 }
