@@ -88,46 +88,48 @@ init();
 
 const select = document.getElementById('order-select');
 
-select.addEventListener("change", function() {
-  console.log(select.value);
-  if (select.value === "date") {
-      media.sort(function(a, b) {
-      var c = new Date(a.date);
-      var d = new Date(b.date);
-      return d-c;
+//following code moved to select.js 
+
+// select.addEventListener("change", function() {
+//   console.log(select.value);
+//   if (select.value === "date") {
+//       media.sort(function(a, b) {
+//       var c = new Date(a.date);
+//       var d = new Date(b.date);
+//       return d-c;
    
   
-   });
-  console.log(media)
+//    });
+//   console.log(media)
 
-  }
+//   }
 
-  if (select.value === "popularité")  {
-    media.sort(function(a, b) {
-      return a.likes - b.likes;
-    });
-    media.reverse();
+//   if (select.value === "popularité")  {
+//     media.sort(function(a, b) {
+//       return a.likes - b.likes;
+//     });
+//     media.reverse();
 
-  }
+//   }
 
-  if (select.value === "titre") {
-    media.sort((a, b) => {
-      let ma = a.title.toLowerCase(),
-          mb = b.title.toLowerCase();
+//   if (select.value === "titre") {
+//     media.sort((a, b) => {
+//       let ma = a.title.toLowerCase(),
+//           mb = b.title.toLowerCase();
   
-      if (ma < mb) {
-          return -1;
-      }
-      if (ma > mb) {
-          return 1;
-      }
-      return 0;
-  });
-  }
-  const cardsContainer = document.getElementById('cards-container'); 
-  cardsContainer.innerHTML = ''; 
-  displayPhotos(data.media);
-});
+//       if (ma < mb) {
+//           return -1;
+//       }
+//       if (ma > mb) {
+//           return 1;
+//       }
+//       return 0;
+//   });
+//   }
+//   const cardsContainer = document.getElementById('cards-container'); 
+//   cardsContainer.innerHTML = ''; 
+//   displayPhotos(data.media);
+// });
 
 //gestion de la lightbox 
 

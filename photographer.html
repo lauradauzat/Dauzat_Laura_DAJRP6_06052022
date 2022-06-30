@@ -18,20 +18,40 @@
        
       </div>
 
-      <div class="select-container">
-        <label for="order-select">Trier par</label>
-
-        <select name="select" id="order-select">
-            <option value="">--</option>
-            <option value="popularité">Popularité</option>
-            <option value="date">Date</option>
-            <option value="titre">Titre</option>
-        </select>
+      <div class="outer-select-container">
+        <span>Trier par :</span>
+        <div class="select-container">
+          
+  
+          <select name="select" id="order-select">
+              <option value="">--</option>
+              <option value="popularité">Popularité</option>
+              <option value="date">Date</option>
+              <option value="titre">Titre</option>
+          </select>
+          
+        </div>
       </div>
 
 
-      <div class="wrap">
 
+      <!-- <div class="select-container">
+        <span>Trier par : </span>
+        <div  class="options">
+          <div id=".."> ---</div>
+          <div id="popularité">Popularité</div>
+          <div id="date">Date</div>
+          <div id="titre">Titre</div>
+        </div>
+        <div class="arrow">></div>
+
+
+
+      </div> -->
+
+      <div class="wrap">
+     
+  
      
   
         <div id="cards-container">
@@ -103,5 +123,6 @@
     <script src="/scripts/pages/photographer.js"></script>
     <script  src="/scripts/utils/lightbox.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/select.js"></script>
   </body>
 </html>
