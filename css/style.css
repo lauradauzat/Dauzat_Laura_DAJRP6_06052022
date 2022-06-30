@@ -248,4 +248,24 @@ form input {
   gap: 40px;
 }
 
+/*likes counter */
+.static-likes-price {
+  position: fixed;
+  bottom: 0;
+  right: 80px;
+  background-color: #DB8876;
+  padding: 20px;
+  display: flex;
+  font-size: large;
+  border-radius: 10px 10px 0 0;
+}
+.static-likes-price > * {
+  margin: 0 20px;
+  display: flex;
+  align-items: center;
+}
+.static-likes-price > * * {
+  padding: 0 5px;
+}
+
 /*# sourceMappingURL=style.css.map */

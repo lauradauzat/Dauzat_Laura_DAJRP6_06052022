@@ -6,7 +6,8 @@ let data;
 let photographer; 
 let media; 
 
-
+const totalLikeContainer = document.getElementById('total-likes'); 
+const priceContainer = document.getElementById('price'); 
 
 
 function getIdFromParams() {
@@ -51,6 +52,7 @@ async function displayHeader(photographer) {
   
 };
 
+let totalLikesCounter = 0; 
 
 async function displayPhotos(media) {
   const cardsContainer = document.getElementById('cards-container'); 
@@ -59,9 +61,12 @@ async function displayPhotos(media) {
     console.log('foreach' + JSON.stringify(image));
     const mediaModel =  mediaFactory(image);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
-    cardsContainer.appendChild(mediaCardDOM)
-
+    cardsContainer.appendChild(mediaCardDOM); 
+    totalLikesCounter += image.likes; 
+    console.log('loop'+ totalLikesCounter);
   });  
+
+  console.log('counter tital' + totalLikesCounter);
   //const imgDOM = imgsCardsModel.getImgs();
   //cardsContainer.appendChild(imgDOM); 
 
@@ -75,6 +80,8 @@ async function init() {
     displayHeader(data.photographer);
     displayPhotos(data.media);
     //console.log(data.media); 
+    countTotalLikes();
+    displayPrice();
 };
 
 init();
@@ -225,6 +232,8 @@ function addLike(likes, id) {
   console.log(currentImg.likes);
   const mediaModel =  mediaFactory(currentImg[0]);
   mediaModel.refreshLikes();
+  totalLikesCounter++ ; 
+  countTotalLikes();
   
 }
 
@@ -237,4 +246,12 @@ function addLike(likes, id) {
 
 function toFrontPage() {
   window.open('/'); 
+}
+
+function countTotalLikes() {
+  totalLikeContainer.innerText = totalLikesCounter;
+}
+
+function displayPrice() {
+ priceContainer.innerText = photographer.price; 
 }

@@ -114,3 +114,27 @@ form input {
     gap: 40px;
    
 }
+
+/*likes counter */
+
+.static-likes-price {
+    position: fixed; 
+    bottom: 0;
+    right: 80px;
+    background-color: $secondary;
+    padding: 20px;
+    display: flex;
+    font-size: large;
+    border-radius: 10px 10px 0 0 ;
+
+     > * {
+     margin: 0 20px;
+     display: flex;
+     align-items: center;
+         * {
+            padding: 0 5px; 
+         }
+     }
+
+    
+}
