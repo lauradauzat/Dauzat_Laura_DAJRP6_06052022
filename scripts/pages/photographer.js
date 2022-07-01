@@ -62,7 +62,10 @@ async function displayPhotos(media) {
     const mediaModel =  mediaFactory(image);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     cardsContainer.appendChild(mediaCardDOM); 
-    totalLikesCounter += image.likes; 
+   
+    // let likesDisplay = likesDisplayEl.textContent; 
+    // console.log('--------------' + likesDisplay);
+    //totalLikesCounter += likesDisplay; 
     console.log('loop'+ totalLikesCounter);
   });  
 
@@ -223,18 +226,13 @@ function clearBox(elementID)
 
 //voir avec Steeve addEventListener ne marche pas 
 
-let liked = false; 
-function addLike(likes, id) {
-  console.log('coucou' + likes);
-  liked = true ;
+function addLike(likes, id) {  
   let currentImg = media.filter((item) => {
     return item.id == id;
   });
-  currentImg.likes = likes + 1
-  console.log(currentImg.likes);
   const mediaModel =  mediaFactory(currentImg[0]);
   mediaModel.refreshLikes();
-  totalLikesCounter++ ; 
+ // totalLikesCounter++ ; 
   countTotalLikes();
   
 }
@@ -251,7 +249,15 @@ function toFrontPage() {
 }
 
 function countTotalLikes() {
-  totalLikeContainer.innerText = totalLikesCounter;
+  var array = document.querySelectorAll('.likes-wrap'); 
+  let newVarForLikes= 0; 
+  for (const value of array) {
+    console.log(parseInt(value.textContent));
+    newVarForLikes += parseInt(value.textContent); 
+  }
+
+  totalLikeContainer.innerText = newVarForLikes; 
+  //totalLikeContainer.innerText = totalLikesCounter;
 }
 
 function displayPrice() {
