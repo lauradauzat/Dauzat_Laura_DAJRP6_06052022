@@ -25,7 +25,7 @@ function mediaFactory(mediadata) {
                 cardImg.setAttribute('id',`${id}`);
                 if (mediadata.hasOwnProperty('image')) {
                     cardImg.innerHTML = `
-                    <div class="img-box" onclick="openLB(${id})">       
+                    <div class="img-box" tabindex=0 onclick="openLB(${id})" onkeypress="handlekp(event, ${id})" id="${id}">       
                         <img src="${pic}" alt="${title}" id="${id}">
                     </div>
     

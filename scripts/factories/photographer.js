@@ -6,6 +6,8 @@ function photographerFactory(data) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         article.setAttribute('onclick',`OpenPhotographerPage(${id})`);
+        article.setAttribute('tabIndex', '0');
+        article.setAttribute('onkeypress', `checkIfEnter(event, ${id})` )
         article.innerHTML = `<img src="${picture}" alt="${name}" id="${id}">
         <h2>${name}</h2>
         <h3>${city}, ${country}</h3>

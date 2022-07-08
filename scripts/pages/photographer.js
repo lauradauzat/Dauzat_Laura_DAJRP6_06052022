@@ -8,6 +8,10 @@ let media;
 
 const totalLikeContainer = document.getElementById('total-likes'); 
 const priceContainer = document.getElementById('price'); 
+leftBtn = document.getElementById('left');
+rightBtn = document.getElementById('right');
+const contactModal = document.getElementById('contact-modal'); 
+
 
 
 function getIdFromParams() {
@@ -144,8 +148,9 @@ let currentImgId = 0;
 
 function openLB(cardId) {
   currentImgId = cardId; 
-  insideModal.innerHTML =  ` <span class="close" onclick="closeLightbox()">&times;</span>`;
+  insideModal.innerHTML =  ` <button class="close" onclick="closeLightbox()"  tabindex="0">&times;</button>`;
   lightbox.style.display = "block";
+
   const selectedImg = media.filter((item) => {
     return item.id == cardId;
 
@@ -157,7 +162,11 @@ function openLB(cardId) {
 
   const mediaModel =  mediaFactory(selectedImg[0]);
   const selectedCardDOM = mediaModel.getLightboxCardDOM();
-  insideModal.appendChild(selectedCardDOM)
+  insideModal.appendChild(selectedCardDOM); 
+ 
+  leftBtn.focus();
+  console.log(document.activeElement);
+  
   
 
 }
@@ -189,29 +198,41 @@ function goLeft() {
     }
      media[previousIndex];
     //console.log(media[previousIndex].title);
-    insideModal.innerHTML =  ` <span class="close" onclick="closeLightbox()">&times;</span>`;
+    insideModal.innerHTML =  ` <button class="close" onclick="closeLightbox()" tabindex="0">&times;</button>`;
     const mediaModel =  mediaFactory(media[previousIndex]);
     const selectedCardDOM = mediaModel.getLightboxCardDOM();
     insideModal.appendChild(selectedCardDOM); 
     currentImgId = media[previousIndex].id;
     console.log(currentIndex);
     console.log(media.length);
+    leftBtn.focus();
 
 }
 
+rightBtn.addEventListener('click', goRight);
+leftBtn.addEventListener('click', goLeft);
+
 function goRight() {
     console.log('right' + currentImgId ); 
+    insideModal.innerHTML = '';
     const currentIndex = media.map(object => object.id).indexOf(currentImgId);
     const nextIndex = (currentIndex + 1) % media.length;
      media[nextIndex];
     console.log(media[nextIndex].title);
-    insideModal.innerHTML =  ` <span class="close" onclick="closeLightbox()">&times;</span>`;
+    const closeBtn = document.createElement('button'); 
+    closeBtn.className = 'close'; 
+    closeBtn.setAttribute('tabindex','0' ); 
+    closeBtn.innerHTML = '&times'; 
+    closeBtn.addEventListener('click', closeLightbox);
+    insideModal.appendChild(closeBtn);
+    //insideModal.innerHTML =  ` <button class="close" onclick="closeLightbox()" tabindex="0">&times;</button>`;
     const mediaModel =  mediaFactory(media[nextIndex]);
     const selectedCardDOM = mediaModel.getLightboxCardDOM();
     insideModal.appendChild(selectedCardDOM)
     currentImgId = media[nextIndex].id;
     console.log(nextIndex);
     console.log(media.length);
+    rightBtn.focus();
 
 }
 
@@ -263,3 +284,64 @@ function countTotalLikes() {
 function displayPrice() {
  priceContainer.innerText = photographer.price; 
 }
+
+
+// accessibilité 
+
+function handlekp(e, id){
+  //press  enter
+  if(e.keyCode === 13){
+      e.preventDefault(); // Ensure it is only this code that runs
+      openLB(id);
+  }
+
+}
+
+
+
+function handleKD(e)  {
+ 
+    console.log('kd'); 
+  if (e.keyCode == '37') {
+     // left arrow
+     goLeft();
+  }
+  if (e.keyCode == '39') {
+     // right arrow
+     goRight();
+  }
+
+  if(e.keyCode === 27){
+    closeLightbox();
+  }
+}
+
+const sc = document.getElementById('sc'); 
+const cf = document.getElementById('cf-first');
+
+function detectTabKey(e) {
+  //tab
+    if (e.keyCode == 9) {
+      //on select
+      if (sc === document.activeElement) {
+        console.log('Element has focus!');
+        // let elements = document.getElementsByClassName('select-items');
+        // el = elements[0];
+        // el.removeAttribute('select-hide'); 
+    
+      }
+      else {
+          console.log(`Element is not focused.`);
+          console.log(document.activeElement);
+      }
+    }
+
+}
+
+
+  //enter
+  if (sc === document.activeElement && e.keyCode == 13 ) {
+    console.log('enter on modal');
+    contactModal.click();
+    
+  }

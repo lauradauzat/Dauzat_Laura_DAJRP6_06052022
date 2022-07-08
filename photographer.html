@@ -20,7 +20,7 @@
 
       <div class="outer-select-container">
         <span>Trier par :</span>
-        <div class="select-container">
+        <div class="select-container" tabindex=0 id="sc">
           
   
           <select name="select" id="order-select">
@@ -82,14 +82,13 @@
     
         
         <div class="modal-content" id="modalContent">
-          <button id="left" onclick="goLeft()"><i class=" fa fa-solid fa-angle-left"></i></button>
+          <button id="left" onkeydown="handleKD(event)" ><i class=" fa fa-solid fa-angle-left"></i></button>
           <div class="inside-modal" id="insideModal">
          
           </div>
-          <button id="right"  onclick="goRight()"> <i class=" fa fa-solid fa-angle-right"></i></button>
+          <button id="right"   onkeydown="handleKD(event)"> <i class=" fa fa-solid fa-angle-right"></i></button>
         </div>
   
-      
      
     
     </div>
@@ -104,15 +103,15 @@
 				<form id="form">
 					<div>
 						<label for="prénom">Prénom</label>
-						<input class="form-input" name="prenom" type="text"/>
+						<input id="cf-first"  autofocus class="form-input" name="prenom" type="text"/>
             <label for="Nom">Nom </label>
             <input class="form-input"  name="nom" type="text">
             <label for="Email">Email</label>
             <input class="form-input"  name="email" type="email" name="Email" id="email">
             <label for="Message">Votre message</label>
-            <input class="form-input" type="text" name="message" id="message">
+            <input class="form-input"  type="text" name="message" id="message">
 					</div>
-          <button class="contact_button" type="submit">Envoyer</button>
+          <button class="contact_button"  type="submit">Envoyer</button>
 				</form>
 			</div>
 		</div>

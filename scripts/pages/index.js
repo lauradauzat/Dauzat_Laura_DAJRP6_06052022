@@ -1,5 +1,7 @@
-
-    async function getPhotographers() {
+const articles = document.querySelectorAll('article'); 
+  
+  
+  async function getPhotographers() {
         let photographers = [];
       
         await fetch("./data/photographers.json")
@@ -40,3 +42,12 @@
       
     }
 
+    function checkIfEnter(event,id) {
+      if (event.key === 'Enter') {
+        // code for enter
+        OpenPhotographerPage(id);
+      }
+    }
+
+  
+ 

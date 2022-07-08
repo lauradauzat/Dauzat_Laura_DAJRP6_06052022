@@ -2,6 +2,9 @@
 const titleName = document.getElementById('contact-name'); 
 const inputs = document.querySelectorAll(".form-input");
 const form = document.getElementById('form');
+const firstInput = document.getElementById('cf-first');
+const modal = document.getElementById("contact_modal");
+
 
 //regex 
 //General Email Regex (RFC 5322 Official Standard)
@@ -12,15 +15,24 @@ nameReg = /[a-zA-Z]/;
 inputs.forEach((input) => input.addEventListener('change', checkValue));
 form.addEventListener('submit', handleSubmit);
 
+
+
+
 function displayModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "flex";
-  titleName.innerHTML += `${photographer.name}`
+  titleName.innerHTML = 'Contactez-moi <br>';
+  titleName.innerHTML += `${photographer.name}`; 
+  console.log(form);
+  modal.focus(); 
+  
 }
 
+
 function closeModal() {
-  const modal = document.getElementById("contact_modal");
+ 
   modal.style.display = "none";
+  
 }
 
 //setting checks for inputs 
