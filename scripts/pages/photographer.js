@@ -1,18 +1,26 @@
 
-
-//Mettre le code JavaScript lié à la page photographer.html
-
 let data; 
 let photographer; 
 let media; 
+let currentImgId = 0;
+let totalLikesCounter = 0; 
 
 const totalLikeContainer = document.getElementById('total-likes'); 
 const priceContainer = document.getElementById('price'); 
-leftBtn = document.getElementById('left');
-rightBtn = document.getElementById('right');
+const leftBtn = document.getElementById('left');
+const rightBtn = document.getElementById('right');
 const contactModal = document.getElementById('contact-modal'); 
+const lightbox = document.getElementById('lightbox'); 
+const lbContent = document.getElementById('modalContent');
+const modalContent = document.getElementById('modalContent'); 
+const insideModal = document.getElementById('insideModal');
+const select = document.getElementById('order-select');
+const sc = document.getElementById('sc'); 
+const cf = document.getElementById('cf-first');
 
 
+rightBtn.addEventListener('click', goRight);
+leftBtn.addEventListener('click', goLeft);
 
 function getIdFromParams() {
     const queryString = window.location.search;
@@ -46,8 +54,6 @@ async function getPhotographerData(searchedId) {
 id = getIdFromParams(); 
 console.log('id : '+id);
 
-
-
 async function displayHeader(photographer) {
     const photographersHeader = document.querySelector(".photograph-header");
     const photographerModel = photographerFactory(photographer);
@@ -56,26 +62,19 @@ async function displayHeader(photographer) {
   
 };
 
-let totalLikesCounter = 0; 
 
 async function displayPhotos(media) {
   const cardsContainer = document.getElementById('cards-container'); 
   
   media.forEach(image => {
-    console.log('foreach' + JSON.stringify(image));
+    //console.log('foreach' + JSON.stringify(image));
     const mediaModel =  mediaFactory(image);
     const mediaCardDOM = mediaModel.getMediaCardDOM();
     cardsContainer.appendChild(mediaCardDOM); 
-   
-    // let likesDisplay = likesDisplayEl.textContent; 
-    // console.log('--------------' + likesDisplay);
-    //totalLikesCounter += likesDisplay; 
-    console.log('loop'+ totalLikesCounter);
+    //console.log('loop'+ totalLikesCounter);
   });  
 
-  console.log('counter tital' + totalLikesCounter);
-  //const imgDOM = imgsCardsModel.getImgs();
-  //cardsContainer.appendChild(imgDOM); 
+  //console.log('counter tital' + totalLikesCounter);
 
 }
 
@@ -93,58 +92,11 @@ async function init() {
 
 init();
 
-const select = document.getElementById('order-select');
 
-//following code moved to select.js 
-
-// select.addEventListener("change", function() {
-//   console.log(select.value);
-//   if (select.value === "date") {
-//       media.sort(function(a, b) {
-//       var c = new Date(a.date);
-//       var d = new Date(b.date);
-//       return d-c;
-   
-  
-//    });
-//   console.log(media)
-
-//   }
-
-//   if (select.value === "popularité")  {
-//     media.sort(function(a, b) {
-//       return a.likes - b.likes;
-//     });
-//     media.reverse();
-
-//   }
-
-//   if (select.value === "titre") {
-//     media.sort((a, b) => {
-//       let ma = a.title.toLowerCase(),
-//           mb = b.title.toLowerCase();
-  
-//       if (ma < mb) {
-//           return -1;
-//       }
-//       if (ma > mb) {
-//           return 1;
-//       }
-//       return 0;
-//   });
-//   }
-//   const cardsContainer = document.getElementById('cards-container'); 
-//   cardsContainer.innerHTML = ''; 
-//   displayPhotos(data.media);
-// });
 
 //gestion de la lightbox 
 
-const lightbox = document.getElementById('lightbox'); 
-const lbContent = document.getElementById('modalContent');
-const modalContent = document.getElementById('modalContent'); 
-const insideModal = document.getElementById('insideModal');
-let currentImgId = 0;
+
 
 function openLB(cardId) {
   currentImgId = cardId; 
@@ -153,36 +105,18 @@ function openLB(cardId) {
 
   const selectedImg = media.filter((item) => {
     return item.id == cardId;
-
   });
-//   console.log('select' + JSON.stringify(selectedImg));
-//  console.log('oiuoiuoiu'+selectedImg[0].title);
-//  console.log(Object.values(selectedImg));
-
 
   const mediaModel =  mediaFactory(selectedImg[0]);
   const selectedCardDOM = mediaModel.getLightboxCardDOM();
   insideModal.appendChild(selectedCardDOM); 
- 
   leftBtn.focus();
   console.log(document.activeElement);
-  
-  
-
 }
 
 function closeLightbox() {
   lightbox.style.display = "none"; 
 }
-
-
-
-
-
-leftBtn = document.getElementById('left'); 
-rightBtn = document.getElementById('right'); 
-
-
 
 function goLeft() {
   //console.log();('left' + currentImgId );
@@ -209,29 +143,26 @@ function goLeft() {
 
 }
 
-rightBtn.addEventListener('click', goRight);
-leftBtn.addEventListener('click', goLeft);
 
 function goRight() {
-    console.log('right' + currentImgId ); 
+    //console.log('right' + currentImgId ); 
     insideModal.innerHTML = '';
     const currentIndex = media.map(object => object.id).indexOf(currentImgId);
     const nextIndex = (currentIndex + 1) % media.length;
      media[nextIndex];
-    console.log(media[nextIndex].title);
+    //console.log(media[nextIndex].title);
     const closeBtn = document.createElement('button'); 
     closeBtn.className = 'close'; 
     closeBtn.setAttribute('tabindex','0' ); 
     closeBtn.innerHTML = '&times'; 
     closeBtn.addEventListener('click', closeLightbox);
     insideModal.appendChild(closeBtn);
-    //insideModal.innerHTML =  ` <button class="close" onclick="closeLightbox()" tabindex="0">&times;</button>`;
     const mediaModel =  mediaFactory(media[nextIndex]);
     const selectedCardDOM = mediaModel.getLightboxCardDOM();
     insideModal.appendChild(selectedCardDOM)
     currentImgId = media[nextIndex].id;
-    console.log(nextIndex);
-    console.log(media.length);
+    // console.log(nextIndex);
+    // console.log(media.length);
     rightBtn.focus();
 
 }
@@ -245,7 +176,6 @@ function clearBox(elementID)
 
 //handle likes
 
-//voir avec Steeve addEventListener ne marche pas 
 
 function addLike(likes, id) {  
   let currentImg = media.filter((item) => {
@@ -253,17 +183,10 @@ function addLike(likes, id) {
   });
   const mediaModel =  mediaFactory(currentImg[0]);
   mediaModel.refreshLikes();
- // totalLikesCounter++ ; 
   countTotalLikes();
   
 }
 
-//const likeButtons = document.querySelectorAll(".likes-wrap")
-// for (const button of likeButtons) {
-//   button.addEventListener('click', function(event) {
-//     console.log('coucou' + button.value );
-//   })
-// }
 
 function toFrontPage() {
   window.open('/'); 
@@ -273,7 +196,7 @@ function countTotalLikes() {
   var array = document.querySelectorAll('.likes-wrap'); 
   let newVarForLikes= 0; 
   for (const value of array) {
-    console.log(parseInt(value.textContent));
+    //console.log(parseInt(value.textContent));
     newVarForLikes += parseInt(value.textContent); 
   }
 
@@ -316,8 +239,7 @@ function handleKD(e)  {
   }
 }
 
-const sc = document.getElementById('sc'); 
-const cf = document.getElementById('cf-first');
+
 
 function detectTabKey(e) {
   //tab
@@ -337,7 +259,6 @@ function detectTabKey(e) {
     }
 
 }
-
 
   //enter
   if (sc === document.activeElement && e.keyCode == 13 ) {

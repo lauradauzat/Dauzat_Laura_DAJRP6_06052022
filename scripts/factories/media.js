@@ -6,8 +6,7 @@ function mediaFactory(mediadata) {
     const modalContent = document.getElementById('modalContent'); 
     const likeContainer = document.getElementById(`like${id}`);
     
-    // mediadata.forEach(image => {
-        console.log('id'+ id); 
+        // console.log('id'+ id); 
         let pic ='';
         let videoUrl = '';
         if (mediadata.hasOwnProperty('image')) {
@@ -36,7 +35,7 @@ function mediaFactory(mediadata) {
                     cardImg.innerHTML = `
                     <div class="img-box">       
                         <video controls>
-                            <source src="${videoUrl}" type="video/mp4">
+                            <source src="${videoUrl}" alt="video called ${title}" type="video/mp4">
                         Your browser does not support the video tag.
                         </video>
                     </div>
@@ -47,7 +46,7 @@ function mediaFactory(mediadata) {
                 `
                     <div  class="txt-box">
                     <p> ${title} </p>
-                    <div id="like${id}" onclick="addLike(${likes}, ${id})" class="likes-wrap">
+                    <div id="like${id}" aria="liker l'élément" onclick="addLike(${likes}, ${id})" class="likes-wrap">
                     ${likes}
                     <i  class="fa fa-solid fa-heart"></i>
                     </div>
@@ -86,7 +85,7 @@ function mediaFactory(mediadata) {
                 cardImg.innerHTML = `
                 <div class="img-box">       
                     <video controls>
-                        <source src="${videoUrl}" type="video/mp4">
+                        <source src="${videoUrl}" type="video/mp4" alt="video called ${title}">
                     Your browser does not support the video tag.
                     </video>
                 </div>
@@ -106,6 +105,6 @@ function mediaFactory(mediadata) {
 
 
         return { getMediaCardDOM , getLightboxCardDOM, refreshLikes}
-    // });
+ 
 
 }

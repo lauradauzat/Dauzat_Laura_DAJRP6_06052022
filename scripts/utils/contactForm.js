@@ -5,17 +5,25 @@ const form = document.getElementById('form');
 const firstInput = document.getElementById('cf-first');
 const modal = document.getElementById("contact_modal");
 
+//setting checks for inputs 
+let firstOk = false; 
+let lastOk = false; 
+let emailOk  = false; 
+
+let prenom = ''; 
+let nom = ''; 
+let email = ''; 
+let message = ''; 
+
+inputs.forEach((input) => input.addEventListener('change', checkValue));
+form.addEventListener('submit', handleSubmit);
+
 
 //regex 
 //General Email Regex (RFC 5322 Official Standard)
 emailReg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 //Verify if name contains at least One letter - avoid 2 space characther for instance
 nameReg = /[a-zA-Z]/;
-
-inputs.forEach((input) => input.addEventListener('change', checkValue));
-form.addEventListener('submit', handleSubmit);
-
-
 
 
 function displayModal() {
@@ -35,15 +43,7 @@ function closeModal() {
   
 }
 
-//setting checks for inputs 
-let firstOk = false; 
-let lastOk = false; 
-let emailOk  = false; 
 
-let prenom = ''; 
-let nom = ''; 
-let email = ''; 
-let message = ''; 
 
 function clearData() {
   prenom = ''; 

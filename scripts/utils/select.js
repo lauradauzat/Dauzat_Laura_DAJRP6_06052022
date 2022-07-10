@@ -3,6 +3,8 @@ var x, i, j, l, ll, selElmnt, a, b, c;
 x = document.getElementsByClassName("select-container");
 
 l = x.length;
+
+//boucle pour chaque élément de la select
 for (i = 0; i < l; i++) {
   selElmnt = x[i].getElementsByTagName("select")[0];
   ll = selElmnt.length;
@@ -37,6 +39,7 @@ for (i = 0; i < l; i++) {
             }
             this.setAttribute("class", "same-as-selected");
             console.log(this.innerHTML); 
+
             /*sort media*/
             if (this.innerHTML=== "Date") {
                 media.sort(function(a, b) {
@@ -73,6 +76,7 @@ for (i = 0; i < l; i++) {
               }
               const cardsContainer = document.getElementById('cards-container'); 
               cardsContainer.innerHTML = ''; 
+              //reprint photos après le tri
               displayPhotos(data.media);
             break;
           }
@@ -117,7 +121,6 @@ function closeAllSelect(elmnt) {
 /* If the user clicks anywhere outside the select box,
 then close all select boxes: */
 document.addEventListener("click", closeAllSelect);
-
 document.addEventListener("keyup", detectTabKey);
 
 
