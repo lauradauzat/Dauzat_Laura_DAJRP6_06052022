@@ -1,5 +1,5 @@
 function mediaFactory(mediadata) {
- console.log('donnée reçu en para par la media factory ej stringify'+ JSON.stringify(mediadata));
+ //console.log('donnée reçu en para par la media factory ej stringify'+ JSON.stringify(mediadata));
 
     const {id, photographerId, title, image, video, likes, date, price } = mediadata;
     const cardsContainer = document.getElementById('cards-container');
@@ -67,7 +67,7 @@ function mediaFactory(mediadata) {
         }
 
         function getLightboxCardDOM() {
-            console.log('coucou');
+            //console.log('coucou');
             const cardImg = document.createElement( 'div' );
             cardImg.setAttribute('class',`img-container`);
             cardImg.setAttribute('id',`${id}`);

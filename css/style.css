@@ -123,6 +123,21 @@ article img {
   gap: 70px;
   margin-top: 100px;
 }
+.photographer_section h2 {
+  margin: 15px 5px 5px 5px;
+  color: #DB8876;
+}
+.photographer_section h3 {
+  margin: 5px;
+  color: #901C1C;
+}
+.photographer_section p {
+  margin: 0px;
+}
+.photographer_section span {
+  margin: 5px;
+  color: rgb(110, 110, 110);
+}
 
 .photographer_section article {
   justify-self: center;

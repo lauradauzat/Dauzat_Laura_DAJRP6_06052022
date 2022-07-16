@@ -44,7 +44,6 @@ function closeModal() {
 }
 
 
-
 function clearData() {
   prenom = ''; 
   nom = ''; 

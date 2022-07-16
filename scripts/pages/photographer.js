@@ -92,6 +92,9 @@ async function init() {
 
 init();
 
+function toFrontPage() {
+  window.open('/'); 
+}
 
 
 //gestion de la lightbox 
@@ -188,9 +191,6 @@ function addLike(likes, id) {
 }
 
 
-function toFrontPage() {
-  window.open('/'); 
-}
 
 function countTotalLikes() {
   var array = document.querySelectorAll('.likes-wrap'); 
