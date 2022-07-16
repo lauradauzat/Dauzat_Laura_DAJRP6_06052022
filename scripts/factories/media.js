@@ -34,8 +34,8 @@ function mediaFactory(mediadata) {
                 {
                     cardImg.innerHTML = `
                     <div class="img-box">       
-                        <video controls>
-                            <source src="${videoUrl}" alt="video called ${title}" type="video/mp4">
+                        <video onclick="openLB(${id})">
+                        <source src="${videoUrl}" alt="video called ${title}" type="video/mp4">
                         Your browser does not support the video tag.
                         </video>
                     </div>
