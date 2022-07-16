@@ -87,11 +87,15 @@ article img {
   font-size: 90px;
   color: #901C1C;
 }
+#lightbox .inside-modal {
+  position: relative;
+}
 #lightbox .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+  color: #901C1C;
+  font-size: 100px;
+  position: absolute;
+  right: -80px;
+  top: -30px;
 }
 #lightbox .close:hover, #lightbox .close:focus {
   color: black;

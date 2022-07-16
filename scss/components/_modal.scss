@@ -36,12 +36,17 @@
 
       }
 
+      .inside-modal {
+         position: relative; 
+      }
+
             /* The Close Button */
      .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+            color: $primary;
+            font-size: 100px;
+            position: absolute;
+            right: -80px;
+            top: -30px;  
      }
         
     .close:hover,.close:focus {
