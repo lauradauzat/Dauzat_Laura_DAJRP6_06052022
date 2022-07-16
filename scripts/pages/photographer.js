@@ -103,7 +103,7 @@ function toFrontPage() {
 
 function openLB(cardId) {
   currentImgId = cardId; 
-  insideModal.innerHTML =  ` <button class="close" onclick="closeLightbox()"  tabindex="0">&times;</button>`;
+  insideModal.innerHTML =  ` <button aria-label="close lightbox" class="close" onclick="closeLightbox()"  tabindex="0">&times;</button>`;
   lightbox.style.display = "block";
 
   const selectedImg = media.filter((item) => {
